@@ -22,5 +22,5 @@ class Volunteer < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_and_belongs_to_many :skills
 
-  enum gender: {male: 0, female: 1}
+  enum gender: {male: 0, female: 1 }
 end

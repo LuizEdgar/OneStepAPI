@@ -18,9 +18,10 @@ class User < ApplicationRecord
 
   has_many :addresses, dependent: :destroy
   has_many :phones, dependent: :destroy
-  has_many :volunteer, dependent: :destroy
+  has_one :volunteer, dependent: :destroy
+  has_one :organization, dependent: :destroy
 
-  enum kind: { volunteer: 0, organization: 1}
+  enum kind: { volunteer: 0, organization: 1 }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
