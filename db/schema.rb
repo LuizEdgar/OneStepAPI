@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401163702) do
+ActiveRecord::Schema.define(version: 20170403142135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20170401163702) do
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
+  create_table "causes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "causes_organizations", id: false, force: :cascade do |t|
+    t.integer "cause_id",        null: false
+    t.integer "organization_id", null: false
+  end
+
   create_table "educations", force: :cascade do |t|
     t.string   "degree"
     t.string   "field"
@@ -37,6 +49,26 @@ ActiveRecord::Schema.define(version: 20170401163702) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["volunteer_id"], name: "index_educations_on_volunteer_id", using: :btree
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "cnpj"
+    t.string   "site"
+    t.string   "about"
+    t.string   "requirements"
+    t.string   "goal"
+    t.string   "need"
+    t.string   "size"
+    t.date     "established_at"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
+  end
+
+  create_table "organizations_skills", id: false, force: :cascade do |t|
+    t.integer "organization_id", null: false
+    t.integer "skill_id",        null: false
   end
 
   create_table "phones", force: :cascade do |t|
@@ -87,6 +119,7 @@ ActiveRecord::Schema.define(version: 20170401163702) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "educations", "volunteers"
+  add_foreign_key "organizations", "users"
   add_foreign_key "phones", "users"
   add_foreign_key "volunteers", "users"
 end
