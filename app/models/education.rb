@@ -13,6 +13,6 @@
 #
 
 class Education < ApplicationRecord
-  belongs_to :volunteer
+  belongs_to :volunteer, required: false
 
 end

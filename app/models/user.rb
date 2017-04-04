@@ -3,10 +3,11 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string
-#  email           :string
-#  kind            :integer
-#  password_digest :string
+#  name            :string           not null
+#  email           :string           not null
+#  kind            :integer          not null
+#  auth            :string           not null
+#  password_digest :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -17,9 +18,16 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :addresses, dependent: :destroy
+  accepts_nested_attributes_for :addresses
+
   has_many :phones, dependent: :destroy
+  accepts_nested_attributes_for :phones
+
   has_one :volunteer, dependent: :destroy
+  accepts_nested_attributes_for :volunteer
+  
   has_one :organization, dependent: :destroy
+  accepts_nested_attributes_for :organization
 
   enum kind: { volunteer: 0, organization: 1 }
 

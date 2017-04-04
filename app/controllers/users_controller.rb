@@ -46,6 +46,11 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email, :kind, :password_digest, :phone)
+      case params[:kind]
+      when "volunteer"
+        params.permit(:name, :email, :kind, :password, volunteer_attributes: [:birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:degree, :field, :activities, :description] ], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+      when "organization"
+        params.permit(:name, :email, :kind, :password, organization_attributes: [:cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+      end
     end
 end

@@ -3,8 +3,8 @@
 # Table name: phones
 #
 #  id         :integer          not null, primary key
-#  number     :string
-#  type       :integer
+#  number     :string           not null
+#  type       :integer          default(0)
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

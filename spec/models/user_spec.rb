@@ -3,10 +3,11 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string
-#  email           :string
-#  kind            :integer
-#  password_digest :string
+#  name            :string           not null
+#  email           :string           not null
+#  kind            :integer          not null
+#  auth            :string           not null
+#  password_digest :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

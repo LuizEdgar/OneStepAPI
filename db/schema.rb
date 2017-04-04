@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20170403142135) do
 
   create_table "phones", force: :cascade do |t|
     t.string   "number",                 null: false
-    t.integer  "type",       default: 0
+    t.integer  "kind",       default: 0
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170403142135) do
 
   create_table "volunteers", force: :cascade do |t|
     t.date     "birth_at"
+    t.string   "about"
     t.integer  "gender"
     t.integer  "day_availability"
     t.integer  "period_availability"
