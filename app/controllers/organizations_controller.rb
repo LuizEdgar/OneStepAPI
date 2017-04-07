@@ -13,17 +13,6 @@ class OrganizationsController < ApplicationController
     render json: @organization
   end
 
-  # POST /organizations
-  def create
-    @organization = Organization.new(organization_params)
-
-    if @organization.save
-      render json: @organization, status: :created, location: @organization
-    else
-      render json: @organization.errors, status: :unprocessable_entity
-    end
-  end
-
   # PATCH/PUT /organizations/1
   def update
     if @organization.update(organization_params)
@@ -31,11 +20,6 @@ class OrganizationsController < ApplicationController
     else
       render json: @organization.errors, status: :unprocessable_entity
     end
-  end
-
-  # DELETE /organizations/1
-  def destroy
-    @organization.destroy
   end
 
   private
