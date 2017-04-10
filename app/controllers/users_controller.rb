@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(create_user_params)
 
     if @user.save
       render :show, status: :created, location: @user
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
+    if @user.update(update_user_params)
       render :show
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -45,12 +45,21 @@ class UsersController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def user_params
+    def create_user_params
       case params[:kind]
       when "volunteer"
         params.permit(:name, :email, :kind, :password, volunteer_attributes: [:birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:degree, :field, :activities, :description] ], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
       when "organization"
         params.permit(:name, :email, :kind, :password, organization_attributes: [:cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+      end
+    end
+
+    def update_user_params
+      case @user.kind
+      when "volunteer"
+        params.permit(:name, :email, :password, volunteer_attributes: [:id, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:id, :degree, :field, :activities, :description, :_destroy] ], addresses_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
+      when "organization"
+        params.permit(:name, :email, :password, organization_attributes: [:id, :cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], addresses_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
       end
     end
 end

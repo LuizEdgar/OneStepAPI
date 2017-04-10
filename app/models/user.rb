@@ -18,10 +18,10 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :addresses, dependent: :destroy
-  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :addresses, allow_destroy: true
 
   has_many :phones, dependent: :destroy
-  accepts_nested_attributes_for :phones
+  accepts_nested_attributes_for :phones, allow_destroy: true
 
   has_one :volunteer, dependent: :destroy
   accepts_nested_attributes_for :volunteer

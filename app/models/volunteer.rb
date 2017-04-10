@@ -22,7 +22,7 @@ class Volunteer < ApplicationRecord
   has_many :addresses, through: :user, source: :addresses
 
   has_many :educations, dependent: :destroy
-  accepts_nested_attributes_for :educations
+  accepts_nested_attributes_for :educations, allow_destroy: true
 
   has_and_belongs_to_many :skills
 
