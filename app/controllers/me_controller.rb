@@ -12,6 +12,27 @@ class MeController < ApplicationController
     end
   end
 
+  def facebook_sign_in
+    
+    begin
+      graph = Koala::Facebook::API.new(params[:facebook_token])
+
+      @user = User.find_by_facebook_id(graph.get_object('me')["id"])
+
+      if @user
+        @auth_user = @user
+
+        render :show
+      else
+        head :not_found
+      end
+
+    rescue Koala::Facebook::AuthenticationError => e
+      head :unauthorized
+    end
+
+  end
+
   def add_education
     @education = @auth_user.volunteer.educations.new(education_params)
 

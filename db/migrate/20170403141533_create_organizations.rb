@@ -7,7 +7,7 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
       t.string :requirements
       t.string :goal
       t.string :need
-      t.string :size
+      t.integer :size
       t.date :established_at
       t.references :user, foreign_key: true
 
