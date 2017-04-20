@@ -1,5 +1,5 @@
 class MeController < ApplicationController
-  skip_before_action :authenticate_user, only: [:sign_in]
+  skip_before_action :authenticate_user, only: [:sign_in, :facebook_sign_in]
 
   def sign_in
     @user = User.find_by_email(params[:email])
@@ -21,7 +21,7 @@ class MeController < ApplicationController
 
       if @user
         @auth_user = @user
-
+        
         render :show
       else
         head :not_found

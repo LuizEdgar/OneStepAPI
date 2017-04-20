@@ -17,11 +17,35 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_user_params)
 
+    if params[:facebook_token]
+      
+      begin
+        graph = Koala::Facebook::API.new(params[:facebook_token])
+        facebook_user_id = graph.get_object('me')["id"]
+
+        @existing_user = User.find_by_facebook_id(facebook_user_id)
+
+        if @existing_user
+          @user = @existing_user
+          render :show
+          return
+        else
+          @user.facebook_id = facebook_user_id  
+        end
+        
+      rescue Koala::Facebook::AuthenticationError => e
+        head :unauthorized
+        return
+      end
+
+    end
+
     if @user.save
       render :show, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+    
   end
 
   # PATCH/PUT /users/1

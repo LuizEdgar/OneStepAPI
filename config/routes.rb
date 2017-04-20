@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resource :me, controller: 'me', only: [:show] do
-    post :sign_in, :add_education
+    post :sign_in, :facebook_sign_in, :add_education
   end
 
   resources :volunteers, only: [:index]

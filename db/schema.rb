@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20170403142135) do
     t.string   "requirements"
     t.string   "goal"
     t.string   "need"
-    t.string   "size"
+    t.integer  "size"
     t.date     "established_at"
     t.integer  "user_id"
     t.datetime "created_at",     null: false
@@ -94,11 +94,11 @@ ActiveRecord::Schema.define(version: 20170403142135) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
-    t.string   "email",           null: false
+    t.string   "email"
+    t.string   "facebook_id"
     t.integer  "kind",            null: false
     t.string   "auth",            null: false
-    t.string   "password_digest", null: false
-    t.string   "reset_token",     null: false
+    t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
