@@ -4,6 +4,7 @@
 #
 #  id                  :integer          not null, primary key
 #  birth_at            :date
+#  about               :string
 #  gender              :integer
 #  day_availability    :integer
 #  period_availability :integer

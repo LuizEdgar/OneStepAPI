@@ -15,13 +15,10 @@ class MeController < ApplicationController
   def facebook_sign_in
     
     begin
-      graph = Koala::Facebook::API.new(params[:facebook_token])
-
-      @user = User.find_by_facebook_id(graph.get_object('me')["id"])
+      @user = User.find_by_facebook_token(params[:facebook_token])
 
       if @user
         @auth_user = @user
-        
         render :show
       else
         head :not_found

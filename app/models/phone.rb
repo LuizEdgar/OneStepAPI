@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  number     :string           not null
-#  type       :integer          default(0)
+#  kind       :integer          default("other")
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

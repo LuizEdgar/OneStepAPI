@@ -9,7 +9,7 @@
 #  requirements   :string
 #  goal           :string
 #  need           :string
-#  size           :string
+#  size           :integer
 #  established_at :date
 #  user_id        :integer
 #  created_at     :datetime         not null
