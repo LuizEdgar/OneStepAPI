@@ -33,7 +33,9 @@ class User < ApplicationRecord
   enum kind: { volunteer: 0, organization: 1 }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\Z/
 
+  validates :username, length: (3..18), presence: true, uniqueness: true, format: { with: VALID_USERNAME_REGEX }
   validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true, if: Proc.new{|user| user.facebook_id.blank? }
   validates :password, length: (6..32), confirmation: true, if: Proc.new{|user| user.facebook_id.blank? }
   validates :facebook_id, uniqueness: true, if: Proc.new{|user| user.email.blank? && user.password.blank? && user.facebook_id.present? }
