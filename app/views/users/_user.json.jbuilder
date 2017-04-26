@@ -1,13 +1,20 @@
 json.id user.id
 json.name user.name
-# json.nickname user.nickname
 json.email user.email
-# json.voting_number user.voting_number
-# json.party user.party
-# json.city user.city
-# json.state user.state
-# json.office user.office
+json.username user.username
 json.auth user.auth
+json.facebook_id user.facebook_id
+json.kind user.kind
+if user.volunteer?
+  json.volunteer do
+    json.partial! 'volunteers/volunteer', volunteer: user.volunteer
+  end
+end
+if user.organization?
+  json.organization do
+    json.partial! 'organizations/organization', organization: user.organization
+  end
+end
 # json.profile_image do
   # if user.profile_image.present?
       # json.partial! '/images/image', image: user.profile_image
