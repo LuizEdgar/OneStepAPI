@@ -3,7 +3,8 @@ class CreateVolunteers < ActiveRecord::Migration[5.0]
     create_table :volunteers do |t|
       t.date :birth_at
       t.string :about
-      t.integer :gender
+      t.string :occupation
+      t.integer :gender, default: 0 # 0 = other
       t.integer :day_availability
       t.integer :period_availability
       t.boolean :volunteered

@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170403142135) do
   create_table "volunteers", force: :cascade do |t|
     t.date     "birth_at"
     t.string   "about"
+    t.string   "occupation"
     t.integer  "gender"
     t.integer  "day_availability"
     t.integer  "period_availability"

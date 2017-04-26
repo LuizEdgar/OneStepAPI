@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     def create_user_params
       case params[:kind]
       when "volunteer"
-        params.permit(:name, :username, :email, :kind, :password, volunteer_attributes: [:birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:degree, :field, :activities, :description] ], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+        params.permit(:name, :username, :email, :kind, :password, volunteer_attributes: [:about, :occupation, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:degree, :field, :activities, :description] ], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
       when "organization"
         params.permit(:name, :username, :email, :kind, :password, organization_attributes: [:cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], addresses_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
       end
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     def update_user_params
       case @user.kind
       when "volunteer"
-        params.permit(:name, :username, :email, :password, volunteer_attributes: [:id, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:id, :degree, :field, :activities, :description, :_destroy] ], addresses_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
+        params.permit(:name, :username, :email, :password, volunteer_attributes: [:id, :about, :occupation, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, educations_attributes: [:id, :degree, :field, :activities, :description, :_destroy] ], addresses_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
       when "organization"
         params.permit(:name, :username, :email, :password, organization_attributes: [:id, :cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], addresses_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
       end
