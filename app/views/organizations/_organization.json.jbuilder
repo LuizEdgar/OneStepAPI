@@ -1,5 +1,6 @@
 json.id organization.id
 json.cnpj organization.cnpj
+json.verified organization.verified
 json.site organization.site
 json.about organization.about
 json.requirements organization.requirements

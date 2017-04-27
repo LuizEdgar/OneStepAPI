@@ -7,7 +7,7 @@ json.period_availability volunteer.period_availability
 json.volunteered volunteer.volunteered
 json.cpf volunteer.cpf
 json.rg volunteer.rg
-json.verified volunteer.id
+json.verified volunteer.verified
 json.user_id volunteer.user_id
 json.skills do
   json.partial! 'skills/skill', collection: volunteer.skills, as: :skill

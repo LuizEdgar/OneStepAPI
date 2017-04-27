@@ -37,7 +37,7 @@ class User < ApplicationRecord
 
   validates :username, length: (3..18), presence: true, uniqueness: true, format: { with: VALID_USERNAME_REGEX }
   validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  validates :password, length: (6..32), confirmation: true
+  validates :password, length: (6..32), confirmation: true, if: :password
   validates :facebook_id, uniqueness: true, allow_nil: true
 
   def self.find_by_facebook_token(facebook_token)
