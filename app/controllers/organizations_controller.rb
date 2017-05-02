@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations
   def index
-    @organizations = Organization.all
+    @organizations = Organization.all.page params[:page]
 
     render json: @organizations
   end

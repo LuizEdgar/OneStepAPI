@@ -64,10 +64,11 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.string   "goal"
     t.string   "need"
     t.integer  "size"
+    t.boolean  "verified",       default: false
     t.date     "established_at"
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
   end
 
@@ -113,7 +114,7 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.date     "birth_at"
     t.string   "about"
     t.string   "occupation"
-    t.integer  "gender"
+    t.integer  "gender",              default: 0
     t.integer  "day_availability"
     t.integer  "period_availability"
     t.boolean  "volunteered"

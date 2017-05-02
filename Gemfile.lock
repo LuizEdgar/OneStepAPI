@@ -68,6 +68,18 @@ GEM
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
     json (2.1.0)
+    kaminari (1.0.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
+      actionview
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
+      activerecord
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
     koala (3.0.0)
       addressable
       faraday
@@ -174,6 +186,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   faker
   jbuilder (~> 2.5)
+  kaminari
   koala
   listen (~> 3.0.5)
   openssl (>= 2.0.3)
