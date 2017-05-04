@@ -5,7 +5,6 @@ class CreateVolunteers < ActiveRecord::Migration[5.0]
       t.string :about
       t.string :occupation
       t.integer :gender, default: 0 # 0 = other
-      t.integer :day_availability
       t.integer :period_availability
       t.boolean :volunteered
       t.string :cpf
