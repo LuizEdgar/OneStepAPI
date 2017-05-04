@@ -74,7 +74,7 @@ class UsersController < ApplicationController
       when "volunteer"
         params.permit(:name, :username, :email, :kind, :password, volunteer_attributes: [:about, :occupation, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, {cause_ids: []} ], locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
       when "organization"
-        params.permit(:name, :username, :email, :kind, :password, organization_attributes: [:cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+        params.permit(:name, :username, :email, :kind, :password, organization_attributes: [:cnpj, :site, :about, :mission, :size, :established_at, {skill_ids: []}, {cause_ids: []}], locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
       end
     end
 
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
       when "volunteer"
         params.permit(:name, :username, :email, :password, volunteer_attributes: [:id, :about, :occupation, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, {cause_ids: []} ], locations_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
       when "organization"
-        params.permit(:name, :username, :email, :password, organization_attributes: [:id, :cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], locations_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
+        params.permit(:name, :username, :email, :password, organization_attributes: [:id, :cnpj, :site, :about, :mission, :size, :established_at, {skill_ids: []}, {cause_ids: []}], locations_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
       end
     end
 end
