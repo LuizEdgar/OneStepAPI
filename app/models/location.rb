@@ -14,6 +14,6 @@
 #  updated_at :datetime         not null
 #
 
-class Address < ApplicationRecord
+class Location < ApplicationRecord
   belongs_to :user, required: false
 end

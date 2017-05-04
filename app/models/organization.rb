@@ -19,7 +19,7 @@
 class Organization < ApplicationRecord
   belongs_to :user, required: false
   has_many :phones, through: :user, source: :phones
-  has_many :addresses, through: :user, source: :addresses
+  has_many :locations, through: :user, source: :locations
 
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :causes

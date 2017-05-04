@@ -15,19 +15,6 @@ ActiveRecord::Schema.define(version: 20170426210027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", force: :cascade do |t|
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "postcode"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
-  end
-
   create_table "causes", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -45,15 +32,19 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.integer "volunteer_id", null: false
   end
 
-  create_table "educations", force: :cascade do |t|
-    t.string   "degree"
-    t.string   "field"
-    t.string   "activities"
-    t.string   "description"
-    t.integer  "volunteer_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["volunteer_id"], name: "index_educations_on_volunteer_id", using: :btree
+  create_table "locations", force: :cascade do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postcode"
+    t.decimal  "latitude",   precision: 15, scale: 10
+    t.decimal  "longitude",  precision: 15, scale: 10
+    t.integer  "user_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -127,8 +118,7 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.index ["user_id"], name: "index_volunteers_on_user_id", using: :btree
   end
 
-  add_foreign_key "addresses", "users"
-  add_foreign_key "educations", "volunteers"
+  add_foreign_key "locations", "users"
   add_foreign_key "organizations", "users"
   add_foreign_key "phones", "users"
   add_foreign_key "volunteers", "users"

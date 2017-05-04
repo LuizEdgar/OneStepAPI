@@ -18,8 +18,8 @@ class User < ApplicationRecord
   has_secure_token :auth
   has_secure_password validations: false
 
-  has_many :addresses, dependent: :destroy
-  accepts_nested_attributes_for :addresses, allow_destroy: true
+  has_many :locations, dependent: :destroy
+  accepts_nested_attributes_for :locations, allow_destroy: true
 
   has_many :phones, dependent: :destroy
   accepts_nested_attributes_for :phones, allow_destroy: true
