@@ -1,17 +1,20 @@
 # == Schema Information
 #
-# Table name: addresses
+# Table name: locations
 #
-#  id         :integer          not null, primary key
-#  address_1  :string
-#  address_2  :string
-#  city       :string
-#  state      :string
-#  country    :string
-#  postcode   :string
-#  user_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  address_1        :string
+#  address_2        :string
+#  city             :string
+#  state            :string
+#  country          :string
+#  postcode         :string
+#  latitude         :decimal(15, 10)
+#  longitude        :decimal(15, 10)
+#  localizable_type :string
+#  localizable_id   :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class Location < ApplicationRecord

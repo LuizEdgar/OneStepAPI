@@ -3,12 +3,12 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string           not null
-#  email           :string
+#  username        :string           not null
+#  email           :string           not null
 #  facebook_id     :string
-#  kind            :integer          not null
 #  auth            :string           not null
-#  password_digest :string
+#  password_digest :string           not null
+#  kind            :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -16,10 +16,7 @@
 class User < ApplicationRecord
   has_secure_token :auth
   has_secure_password validations: false
-
-  belongs_to :userable, polymorphic: true, required: false
-  accepts_nested_attributes_for :userable
-
+  
   has_one :volunteer, dependent: :destroy
   accepts_nested_attributes_for :volunteer
   

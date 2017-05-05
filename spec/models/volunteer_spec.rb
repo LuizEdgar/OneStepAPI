@@ -3,10 +3,11 @@
 # Table name: volunteers
 #
 #  id                  :integer          not null, primary key
+#  name                :string           not null
 #  birth_at            :date
 #  about               :string
-#  gender              :integer
-#  day_availability    :integer
+#  occupation          :string
+#  gender              :integer          default("other")
 #  period_availability :integer
 #  volunteered         :boolean
 #  cpf                 :string

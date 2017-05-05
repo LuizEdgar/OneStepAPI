@@ -3,12 +3,12 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string           not null
-#  email           :string
+#  username        :string           not null
+#  email           :string           not null
 #  facebook_id     :string
-#  kind            :integer          not null
 #  auth            :string           not null
-#  password_digest :string
+#  password_digest :string           not null
+#  kind            :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

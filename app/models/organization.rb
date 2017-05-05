@@ -3,13 +3,13 @@
 # Table name: organizations
 #
 #  id             :integer          not null, primary key
+#  name           :string           not null
 #  cnpj           :string
 #  site           :string
 #  about          :string
-#  requirements   :string
-#  goal           :string
-#  need           :string
+#  mission        :string
 #  size           :integer
+#  verified       :boolean          default(FALSE)
 #  established_at :date
 #  user_id        :integer
 #  created_at     :datetime         not null
