@@ -14,15 +14,11 @@
 #
 
 class User < ApplicationRecord
-
   has_secure_token :auth
   has_secure_password validations: false
 
-  has_many :locations, dependent: :destroy
-  accepts_nested_attributes_for :locations, allow_destroy: true
-
-  has_many :phones, dependent: :destroy
-  accepts_nested_attributes_for :phones, allow_destroy: true
+  belongs_to :userable, polymorphic: true, required: false
+  accepts_nested_attributes_for :userable
 
   has_one :volunteer, dependent: :destroy
   accepts_nested_attributes_for :volunteer

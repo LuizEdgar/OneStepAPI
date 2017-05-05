@@ -15,5 +15,5 @@
 #
 
 class Location < ApplicationRecord
-  belongs_to :user, required: false
+  belongs_to :contactable, polymorphic: true, required: false
 end

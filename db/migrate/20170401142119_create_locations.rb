@@ -9,7 +9,7 @@ class CreateLocations < ActiveRecord::Migration[5.0]
       t.string :postcode
       t.decimal :latitude, precision: 15, scale: 10
       t.decimal :longitude, precision: 15, scale: 10
-      t.references :user, foreign_key: true
+      t.references :localizable, polymorphic: true
 
       t.timestamps
     end

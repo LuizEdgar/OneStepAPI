@@ -1,4 +1,5 @@
 json.id volunteer.id
+json.name volunteer.name
 json.about volunteer.about
 json.occupation volunteer.occupation
 json.gender volunteer.gender
