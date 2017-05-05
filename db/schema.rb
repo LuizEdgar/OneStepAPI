@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426210027) do
+ActiveRecord::Schema.define(version: 20170504182328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.integer "volunteer_id", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "contactable_type"
+    t.integer  "contactable_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable_type_and_contactable_id", using: :btree
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string   "address_1"
     t.string   "address_2"
@@ -39,21 +50,21 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.string   "state"
     t.string   "country"
     t.string   "postcode"
-    t.decimal  "latitude",   precision: 15, scale: 10
-    t.decimal  "longitude",  precision: 15, scale: 10
-    t.integer  "user_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
+    t.decimal  "latitude",         precision: 15, scale: 10
+    t.decimal  "longitude",        precision: 15, scale: 10
+    t.string   "localizable_type"
+    t.integer  "localizable_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["localizable_type", "localizable_id"], name: "index_locations_on_localizable_type_and_localizable_id", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|
+    t.string   "name",                           null: false
     t.string   "cnpj"
     t.string   "site"
     t.string   "about"
-    t.string   "requirements"
-    t.string   "goal"
-    t.string   "need"
+    t.string   "mission"
     t.integer  "size"
     t.boolean  "verified",       default: false
     t.date     "established_at"
@@ -66,15 +77,6 @@ ActiveRecord::Schema.define(version: 20170426210027) do
   create_table "organizations_skills", id: false, force: :cascade do |t|
     t.integer "organization_id", null: false
     t.integer "skill_id",        null: false
-  end
-
-  create_table "phones", force: :cascade do |t|
-    t.string   "number",                 null: false
-    t.integer  "kind",       default: 0
-    t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["user_id"], name: "index_phones_on_user_id", using: :btree
   end
 
   create_table "skills", force: :cascade do |t|
@@ -90,23 +92,22 @@ ActiveRecord::Schema.define(version: 20170426210027) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",            null: false
     t.string   "username",        null: false
     t.string   "email",           null: false
     t.string   "facebook_id"
-    t.integer  "kind",            null: false
     t.string   "auth",            null: false
     t.string   "password_digest", null: false
+    t.integer  "kind",            null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   create_table "volunteers", force: :cascade do |t|
+    t.string   "name",                                null: false
     t.date     "birth_at"
     t.string   "about"
     t.string   "occupation"
     t.integer  "gender",              default: 0
-    t.integer  "day_availability"
     t.integer  "period_availability"
     t.boolean  "volunteered"
     t.string   "cpf"
@@ -118,8 +119,6 @@ ActiveRecord::Schema.define(version: 20170426210027) do
     t.index ["user_id"], name: "index_volunteers_on_user_id", using: :btree
   end
 
-  add_foreign_key "locations", "users"
   add_foreign_key "organizations", "users"
-  add_foreign_key "phones", "users"
   add_foreign_key "volunteers", "users"
 end

@@ -1,11 +1,11 @@
 class CreateVolunteers < ActiveRecord::Migration[5.0]
   def change
     create_table :volunteers do |t|
+      t.string :name, null: false
       t.date :birth_at
       t.string :about
       t.string :occupation
       t.integer :gender, default: 0 # 0 = other
-      t.integer :day_availability
       t.integer :period_availability
       t.boolean :volunteered
       t.string :cpf

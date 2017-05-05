@@ -3,10 +3,11 @@
 # Table name: volunteers
 #
 #  id                  :integer          not null, primary key
+#  name                :string           not null
 #  birth_at            :date
 #  about               :string
-#  gender              :integer
-#  day_availability    :integer
+#  occupation          :string
+#  gender              :integer          default("other")
 #  period_availability :integer
 #  volunteered         :boolean
 #  cpf                 :string
@@ -19,8 +20,12 @@
 
 class Volunteer < ApplicationRecord
   belongs_to :user, required: false
-  has_many :phones, through: :user, source: :phones
-  has_many :locations, through: :user, source: :locations
+
+  has_many :locations, as: :localizable, dependent: :destroy
+  accepts_nested_attributes_for :locations, allow_destroy: true
+
+  has_many :contacts, as: :contactable, dependent: :destroy
+  accepts_nested_attributes_for :contacts, allow_destroy: true
 
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :causes

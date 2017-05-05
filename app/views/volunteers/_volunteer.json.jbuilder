@@ -1,8 +1,8 @@
 json.id volunteer.id
+json.name volunteer.name
 json.about volunteer.about
 json.occupation volunteer.occupation
 json.gender volunteer.gender
-json.day_availability volunteer.day_availability
 json.period_availability volunteer.period_availability
 json.volunteered volunteer.volunteered
 json.cpf volunteer.cpf

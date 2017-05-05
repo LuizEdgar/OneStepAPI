@@ -72,18 +72,92 @@ class UsersController < ApplicationController
     def create_user_params
       case params[:kind]
       when "volunteer"
-        params.permit(:name, :username, :email, :kind, :password, volunteer_attributes: [:about, :occupation, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, {cause_ids: []} ], locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+        params.permit(:kind,
+                      :username, 
+                      :email, 
+                      :password, 
+                      volunteer_attributes: 
+                        [ :name,
+                          :about, 
+                          :occupation, 
+                          :birth_at, 
+                          :gender, 
+                          :period_availability, 
+                          :volunteered, 
+                          :cpf, 
+                          :rg, 
+                          :verified, 
+                          {skill_ids: []}, 
+                          {cause_ids: []}, 
+                          contacts_attributes: [ :name, :phone, :email], 
+                          locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ]
+                        ]
+                      )
       when "organization"
-        params.permit(:name, :username, :email, :kind, :password, organization_attributes: [:cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ], phones_attributes: [ :number, :kind])
+        params.permit(:kind,
+                      :username, 
+                      :email, 
+                      :password, 
+                      organization_attributes: 
+                        [ :name,
+                          :cnpj, 
+                          :site, 
+                          :about, 
+                          :mission, 
+                          :size, 
+                          :established_at, 
+                          {skill_ids: []}, 
+                          {cause_ids: []}, 
+                          contacts_attributes: [ :name, :phone, :email], 
+                          locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ]
+                        ]
+                      )
       end
     end
 
     def update_user_params
       case @user.kind
       when "volunteer"
-        params.permit(:name, :username, :email, :password, volunteer_attributes: [:id, :about, :occupation, :birth_at, :gender, :day_availability, :period_availability, :volunteered, :cpf, :rg, :verified, {skill_ids: []}, {cause_ids: []} ], locations_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
+        params.permit(:username, 
+                      :email, 
+                      :password, 
+                      volunteer_attributes: 
+                        [ :id, 
+                          :name,
+                          :about, 
+                          :occupation, 
+                          :birth_at, 
+                          :gender, 
+                          :period_availability, 
+                          :volunteered, 
+                          :cpf, 
+                          :rg, 
+                          :verified, 
+                          {skill_ids: []}, 
+                          {cause_ids: []}, 
+                          contacts_attributes: [ :id, :name, :phone, :email, :_destroy],
+                          locations_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
+                        ]
+                      )
       when "organization"
-        params.permit(:name, :username, :email, :password, organization_attributes: [:id, :cnpj, :site, :about, :requirementes, :goal, :need, :size, :established_at, {skill_ids: []}, {cause_ids: []}], locations_attributes: [:id,  :address_1, :address_2, :city, :state, :country, :postcode, :_destroy], phones_attributes: [:id,  :number, :kind, :_destroy])
+        params.permit(:username, 
+                      :email, 
+                      :password, 
+                      organization_attributes: 
+                        [ :id, 
+                          :name,
+                          :cnpj, 
+                          :site, 
+                          :about, 
+                          :mission, 
+                          :size, 
+                          :established_at, 
+                          {skill_ids: []}, 
+                          {cause_ids: []}, 
+                          contacts_attributes: [ :id, :name, :phone, :email, :_destroy], 
+                          locations_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
+                        ]
+                      )
       end
     end
 end

@@ -1,11 +1,10 @@
 json.id organization.id
+json.name organization.name
 json.cnpj organization.cnpj
 json.verified organization.verified
 json.site organization.site
 json.about organization.about
-json.requirements organization.requirements
-json.goal organization.goal
-json.need organization.need
+json.mission organization.mission
 json.size organization.size
 json.established_at organization.established_at
 json.user_id organization.user_id
