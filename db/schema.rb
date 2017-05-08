@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504182328) do
+ActiveRecord::Schema.define(version: 20170508204706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20170504182328) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "causes_opportunities", id: false, force: :cascade do |t|
+    t.integer "cause_id",       null: false
+    t.integer "opportunity_id", null: false
   end
 
   create_table "causes_organizations", id: false, force: :cascade do |t|
@@ -59,12 +64,30 @@ ActiveRecord::Schema.define(version: 20170504182328) do
     t.index ["localizable_type", "localizable_id"], name: "index_locations_on_localizable_type_and_localizable_id", using: :btree
   end
 
+  create_table "opportunities_skills", id: false, force: :cascade do |t|
+    t.integer "opportunity_id", null: false
+    t.integer "skill_id",       null: false
+  end
+
+  create_table "oppotunities", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "volunteers_number"
+    t.text     "description"
+    t.string   "time_commitment"
+    t.string   "requirements"
+    t.string   "opportunitable_type"
+    t.integer  "opportunitable_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["opportunitable_type", "opportunitable_id"], name: "index_oppotunities_on_opportunitable_type_and_opportunitable_id", using: :btree
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name",                           null: false
     t.string   "cnpj"
     t.string   "site"
-    t.string   "about"
-    t.string   "mission"
+    t.text     "about"
+    t.text     "mission"
     t.integer  "size"
     t.boolean  "verified",       default: false
     t.date     "established_at"
@@ -105,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170504182328) do
   create_table "volunteers", force: :cascade do |t|
     t.string   "name",                                null: false
     t.date     "birth_at"
-    t.string   "about"
+    t.text     "about"
     t.string   "occupation"
     t.integer  "gender",              default: 0
     t.integer  "period_availability"

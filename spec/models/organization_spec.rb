@@ -6,8 +6,8 @@
 #  name           :string           not null
 #  cnpj           :string
 #  site           :string
-#  about          :string
-#  mission        :string
+#  about          :text
+#  mission        :text
 #  size           :integer
 #  verified       :boolean          default(FALSE)
 #  established_at :date

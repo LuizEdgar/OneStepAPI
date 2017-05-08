@@ -5,7 +5,7 @@
 #  id                  :integer          not null, primary key
 #  name                :string           not null
 #  birth_at            :date
-#  about               :string
+#  about               :text
 #  occupation          :string
 #  gender              :integer          default("other")
 #  period_availability :integer

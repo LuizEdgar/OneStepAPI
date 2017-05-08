@@ -4,8 +4,8 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :cnpj
       t.string :site
-      t.string :about
-      t.string :mission
+      t.text :about
+      t.text :mission
       t.integer :size
       t.boolean :verified, default: false
       t.date :established_at
