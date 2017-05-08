@@ -18,10 +18,10 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe OppotunitiesController, type: :controller do
+RSpec.describe OpportunitiesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Oppotunity. As you add validations to Oppotunity, be sure to
+  # Opportunity. As you add validations to Opportunity, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -33,68 +33,68 @@ RSpec.describe OppotunitiesController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # OppotunitiesController. Be sure to keep this updated too.
+  # OpportunitiesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "assigns all oppotunities as @oppotunities" do
-      oppotunity = Oppotunity.create! valid_attributes
+    it "assigns all opportunities as @opportunities" do
+      opportunity = Opportunity.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:oppotunities)).to eq([oppotunity])
+      expect(assigns(:opportunities)).to eq([opportunity])
     end
   end
 
   describe "GET #show" do
-    it "assigns the requested oppotunity as @oppotunity" do
-      oppotunity = Oppotunity.create! valid_attributes
-      get :show, params: {id: oppotunity.to_param}, session: valid_session
-      expect(assigns(:oppotunity)).to eq(oppotunity)
+    it "assigns the requested opportunity as @opportunity" do
+      opportunity = Opportunity.create! valid_attributes
+      get :show, params: {id: opportunity.to_param}, session: valid_session
+      expect(assigns(:opportunity)).to eq(opportunity)
     end
   end
 
   describe "GET #new" do
-    it "assigns a new oppotunity as @oppotunity" do
+    it "assigns a new opportunity as @opportunity" do
       get :new, params: {}, session: valid_session
-      expect(assigns(:oppotunity)).to be_a_new(Oppotunity)
+      expect(assigns(:opportunity)).to be_a_new(Opportunity)
     end
   end
 
   describe "GET #edit" do
-    it "assigns the requested oppotunity as @oppotunity" do
-      oppotunity = Oppotunity.create! valid_attributes
-      get :edit, params: {id: oppotunity.to_param}, session: valid_session
-      expect(assigns(:oppotunity)).to eq(oppotunity)
+    it "assigns the requested opportunity as @opportunity" do
+      opportunity = Opportunity.create! valid_attributes
+      get :edit, params: {id: opportunity.to_param}, session: valid_session
+      expect(assigns(:opportunity)).to eq(opportunity)
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Oppotunity" do
+      it "creates a new Opportunity" do
         expect {
-          post :create, params: {oppotunity: valid_attributes}, session: valid_session
-        }.to change(Oppotunity, :count).by(1)
+          post :create, params: {opportunity: valid_attributes}, session: valid_session
+        }.to change(Opportunity, :count).by(1)
       end
 
-      it "assigns a newly created oppotunity as @oppotunity" do
-        post :create, params: {oppotunity: valid_attributes}, session: valid_session
-        expect(assigns(:oppotunity)).to be_a(Oppotunity)
-        expect(assigns(:oppotunity)).to be_persisted
+      it "assigns a newly created opportunity as @opportunity" do
+        post :create, params: {opportunity: valid_attributes}, session: valid_session
+        expect(assigns(:opportunity)).to be_a(Opportunity)
+        expect(assigns(:opportunity)).to be_persisted
       end
 
-      it "redirects to the created oppotunity" do
-        post :create, params: {oppotunity: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Oppotunity.last)
+      it "redirects to the created opportunity" do
+        post :create, params: {opportunity: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(Opportunity.last)
       end
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved oppotunity as @oppotunity" do
-        post :create, params: {oppotunity: invalid_attributes}, session: valid_session
-        expect(assigns(:oppotunity)).to be_a_new(Oppotunity)
+      it "assigns a newly created but unsaved opportunity as @opportunity" do
+        post :create, params: {opportunity: invalid_attributes}, session: valid_session
+        expect(assigns(:opportunity)).to be_a_new(Opportunity)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {oppotunity: invalid_attributes}, session: valid_session
+        post :create, params: {opportunity: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
       end
     end
@@ -106,53 +106,53 @@ RSpec.describe OppotunitiesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested oppotunity" do
-        oppotunity = Oppotunity.create! valid_attributes
-        put :update, params: {id: oppotunity.to_param, oppotunity: new_attributes}, session: valid_session
-        oppotunity.reload
+      it "updates the requested opportunity" do
+        opportunity = Opportunity.create! valid_attributes
+        put :update, params: {id: opportunity.to_param, opportunity: new_attributes}, session: valid_session
+        opportunity.reload
         skip("Add assertions for updated state")
       end
 
-      it "assigns the requested oppotunity as @oppotunity" do
-        oppotunity = Oppotunity.create! valid_attributes
-        put :update, params: {id: oppotunity.to_param, oppotunity: valid_attributes}, session: valid_session
-        expect(assigns(:oppotunity)).to eq(oppotunity)
+      it "assigns the requested opportunity as @opportunity" do
+        opportunity = Opportunity.create! valid_attributes
+        put :update, params: {id: opportunity.to_param, opportunity: valid_attributes}, session: valid_session
+        expect(assigns(:opportunity)).to eq(opportunity)
       end
 
-      it "redirects to the oppotunity" do
-        oppotunity = Oppotunity.create! valid_attributes
-        put :update, params: {id: oppotunity.to_param, oppotunity: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(oppotunity)
+      it "redirects to the opportunity" do
+        opportunity = Opportunity.create! valid_attributes
+        put :update, params: {id: opportunity.to_param, opportunity: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(opportunity)
       end
     end
 
     context "with invalid params" do
-      it "assigns the oppotunity as @oppotunity" do
-        oppotunity = Oppotunity.create! valid_attributes
-        put :update, params: {id: oppotunity.to_param, oppotunity: invalid_attributes}, session: valid_session
-        expect(assigns(:oppotunity)).to eq(oppotunity)
+      it "assigns the opportunity as @opportunity" do
+        opportunity = Opportunity.create! valid_attributes
+        put :update, params: {id: opportunity.to_param, opportunity: invalid_attributes}, session: valid_session
+        expect(assigns(:opportunity)).to eq(opportunity)
       end
 
       it "re-renders the 'edit' template" do
-        oppotunity = Oppotunity.create! valid_attributes
-        put :update, params: {id: oppotunity.to_param, oppotunity: invalid_attributes}, session: valid_session
+        opportunity = Opportunity.create! valid_attributes
+        put :update, params: {id: opportunity.to_param, opportunity: invalid_attributes}, session: valid_session
         expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested oppotunity" do
-      oppotunity = Oppotunity.create! valid_attributes
+    it "destroys the requested opportunity" do
+      opportunity = Opportunity.create! valid_attributes
       expect {
-        delete :destroy, params: {id: oppotunity.to_param}, session: valid_session
-      }.to change(Oppotunity, :count).by(-1)
+        delete :destroy, params: {id: opportunity.to_param}, session: valid_session
+      }.to change(Opportunity, :count).by(-1)
     end
 
-    it "redirects to the oppotunities list" do
-      oppotunity = Oppotunity.create! valid_attributes
-      delete :destroy, params: {id: oppotunity.to_param}, session: valid_session
-      expect(response).to redirect_to(oppotunities_url)
+    it "redirects to the opportunities list" do
+      opportunity = Opportunity.create! valid_attributes
+      delete :destroy, params: {id: opportunity.to_param}, session: valid_session
+      expect(response).to redirect_to(opportunities_url)
     end
   end
 

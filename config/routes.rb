@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :oppotunities
+  resources :opportunities
   resource :me, controller: 'me', only: [:show] do
     post :sign_in, :facebook_sign_in, :add_education
   end

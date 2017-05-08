@@ -64,22 +64,29 @@ ActiveRecord::Schema.define(version: 20170508204706) do
     t.index ["localizable_type", "localizable_id"], name: "index_locations_on_localizable_type_and_localizable_id", using: :btree
   end
 
-  create_table "opportunities_skills", id: false, force: :cascade do |t|
-    t.integer "opportunity_id", null: false
-    t.integer "skill_id",       null: false
-  end
-
-  create_table "oppotunities", force: :cascade do |t|
+  create_table "opportunities", force: :cascade do |t|
     t.string   "title"
+    t.boolean  "is_ongoing"
+    t.boolean  "is_virtual"
     t.integer  "volunteers_number"
+    t.date     "start_date_at"
+    t.date     "end_date_at"
+    t.time     "start_time_at"
+    t.time     "end_time_at"
     t.text     "description"
     t.string   "time_commitment"
-    t.string   "requirements"
+    t.string   "other_requirements"
+    t.string   "tags"
     t.string   "opportunitable_type"
     t.integer  "opportunitable_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.index ["opportunitable_type", "opportunitable_id"], name: "index_oppotunities_on_opportunitable_type_and_opportunitable_id", using: :btree
+    t.index ["opportunitable_type", "opportunitable_id"], name: "index_opportunities_on_opportunitable_type_and_id", using: :btree
+  end
+
+  create_table "opportunities_skills", id: false, force: :cascade do |t|
+    t.integer "opportunity_id", null: false
+    t.integer "skill_id",       null: false
   end
 
   create_table "organizations", force: :cascade do |t|

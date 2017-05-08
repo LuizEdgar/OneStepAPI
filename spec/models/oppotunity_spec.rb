@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: oppotunities
+# Table name: opportunities
 #
 #  id                  :integer          not null, primary key
 #  title               :string
@@ -16,6 +16,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Oppotunity, type: :model do
+RSpec.describe Opportunity, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

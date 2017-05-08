@@ -1,6 +1,6 @@
-class CreateOppotunities < ActiveRecord::Migration[5.0]
+class CreateOpportunities < ActiveRecord::Migration[5.0]
   def change
-    create_table :oppotunities do |t|
+    create_table :opportunities do |t|
       t.string :title
       t.boolean :is_ongoing
       t.boolean :is_virtual
@@ -13,7 +13,7 @@ class CreateOppotunities < ActiveRecord::Migration[5.0]
       t.string :time_commitment
       t.string :other_requirements
       t.string :tags
-      t.references :opportunitable, polymorphic: true
+      t.references :opportunitable, polymorphic: true, index: { name: 'index_opportunities_on_opportunitable_type_and_id' }
 
       t.timestamps
     end
