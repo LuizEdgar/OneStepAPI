@@ -2,9 +2,9 @@ class CreateOpportunities < ActiveRecord::Migration[5.0]
   def change
     create_table :opportunities do |t|
       t.string :title
-      t.boolean :is_ongoing
-      t.boolean :is_virtual
       t.integer :volunteers_number
+      t.boolean :is_virtual
+      t.boolean :is_ongoing
       t.date :start_date_at
       t.date :end_date_at
       t.time :start_time_at

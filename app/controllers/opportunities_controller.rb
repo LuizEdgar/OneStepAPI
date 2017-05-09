@@ -15,8 +15,13 @@ class OpportunitiesController < ApplicationController
   # POST /opportunities
   # POST /opportunities.json
   def create
-    @opportunity = Opportunity.new(opportunity_params)
-
+    
+    if @auth_user.volunteer?
+      @opportunity = @auth_user.volunteer.opportunities.new(opportunity_params)
+    else
+      @opportunity = @auth_user.organization.opportunities.new(opportunity_params)
+    end
+    
     if @opportunity.save
       render :show, status: :created, location: @opportunity
     else
@@ -41,13 +46,23 @@ class OpportunitiesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_opportunity
       @opportunity = Opportunity.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def opportunity_params
-      params.require(:opportunity).permit(:title, :volunteers_number, :description, :time_commitment, :requirements, :opportunitable_id, :opportunitable_type)
+      params.permit(:title,
+                    :volunteers_number, 
+                    :description, 
+                    :time_commitment, 
+                    :other_requirements,
+                    {skill_ids: []},
+                    {cause_ids: []}, 
+                    contacts_attributes: [ :id, :name, :phone, :email, :_destroy], 
+                    locations_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
+                    )
     end
+
 end
