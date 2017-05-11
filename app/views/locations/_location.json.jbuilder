@@ -1,0 +1,1 @@
+json.extract! location, :id, :address_1, :address_2, :city, :state, :country, :postcode, :latitude, :longitude, :localizable_type, :localizable_id

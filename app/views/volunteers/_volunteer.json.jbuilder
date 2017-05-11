@@ -15,6 +15,12 @@ end
 json.causes do
   json.partial! 'causes/cause', collection: volunteer.causes, as: :cause
 end
+json.locations do
+  json.partial! 'locations/location', collection: volunteer.locations, as: :location
+end
+json.contacts do
+  json.partial! 'contacts/contact', collection: volunteer.contacts, as: :contact
+end
 json.birth_at volunteer.birth_at
 json.created_at volunteer.created_at
 json.updated_at volunteer.updated_at
