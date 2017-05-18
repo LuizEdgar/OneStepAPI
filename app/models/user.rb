@@ -38,4 +38,44 @@ class User < ApplicationRecord
     @user = User.find_by_facebook_id(graph.get_object('me')["id"])
   end
 
+  def contacts
+    if kind == "volunteer"
+      @contacts = volunteer.contacts
+    else
+      @contacts = organization.contacts
+    end
+  end
+
+  def opportunities
+    if kind == "volunteer"
+      @opportunities = volunteer.opportunities
+    else
+      @opportunities = organization.opportunities
+    end
+  end
+
+  def skills
+    if kind == "volunteer"
+      @skills = volunteer.skills
+    else
+      @skills = organization.skills
+    end
+  end
+
+  def causes
+    if kind == "volunteer"
+      @causes = volunteer.causes
+    else
+      @causes = organization.causes
+    end
+  end
+
+  def locations
+    if kind == "volunteer"
+      @locations = volunteer.locations
+    else
+      @locations = organization.locations
+    end
+  end
+
 end

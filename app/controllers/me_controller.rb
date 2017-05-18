@@ -40,6 +40,22 @@ class MeController < ApplicationController
     end
   end
 
+  def contacts
+    @contacts = @auth_user.contacts
+  end
+
+  def locations
+    @locations = @auth_user.locations
+  end
+
+  def causes
+    @causes = @auth_user.causes
+  end
+
+  def skills
+    @skills = @auth_user.skills
+  end
+
   private
   
   def education_params

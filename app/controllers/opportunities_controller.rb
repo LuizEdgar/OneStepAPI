@@ -16,11 +16,7 @@ class OpportunitiesController < ApplicationController
   # POST /opportunities.json
   def create
     
-    if @auth_user.volunteer?
-      @opportunity = @auth_user.volunteer.opportunities.new(opportunity_params)
-    else
-      @opportunity = @auth_user.organization.opportunities.new(opportunity_params)
-    end
+    @opportunity = @auth_user.opportunities.new(opportunity_params)
     
     if @opportunity.save
       render :show, status: :created, location: @opportunity
@@ -57,14 +53,14 @@ class OpportunitiesController < ApplicationController
                     :volunteers_number, 
                     :description, 
                     :time_commitment, 
-                    :other_requirements,
+                    :others_requirements,
                     :is_ongoing, 
                     :is_virtual, 
                     :start_date_at, 
                     :end_date_at, 
                     :start_time_at, 
                     :end_time_at, 
-                    :other_requirements, 
+                    :others_requirements, 
                     :tags, 
                     {skill_ids: []},
                     {cause_ids: []}, 

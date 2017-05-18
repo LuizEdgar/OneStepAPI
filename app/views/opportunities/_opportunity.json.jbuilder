@@ -9,16 +9,18 @@ json.start_time_at opportunity.start_time_at
 json.end_time_at opportunity.end_time_at
 json.description opportunity.description
 json.time_commitment opportunity.time_commitment
-json.other_requirements opportunity.other_requirements
+json.others_requirements opportunity.others_requirements
 json.tags opportunity.tags
 json.opportunitable_type opportunity.opportunitable_type
 json.opportunitable_id opportunity.opportunitable_id
 json.skills do
   json.partial! 'skills/skill', collection: opportunity.skills, as: :skill
 end
+json.skill_ids opportunity.skills.ids
 json.causes do
   json.partial! 'causes/cause', collection: opportunity.causes, as: :cause
 end
+json.cause_ids opportunity.causes.ids
 json.locations do
   json.partial! 'locations/location', collection: opportunity.locations, as: :location
 end
@@ -40,7 +42,7 @@ json.updated_at opportunity.updated_at
 #  end_time_at         :time
 #  description         :text
 #  time_commitment     :string
-#  other_requirements  :string
+#  others_requirements  :string
 #  tags                :string
 #  opportunitable_type :string
 #  opportunitable_id   :integer

@@ -13,7 +13,7 @@
 #  end_time_at         :time
 #  description         :text
 #  time_commitment     :string
-#  other_requirements  :string
+#  others_requirements  :string
 #  tags                :string
 #  opportunitable_type :string
 #  opportunitable_id   :integer

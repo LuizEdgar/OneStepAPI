@@ -11,7 +11,7 @@ class CreateOpportunities < ActiveRecord::Migration[5.0]
       t.time :end_time_at
       t.text :description
       t.string :time_commitment
-      t.string :other_requirements
+      t.string :others_requirements
       t.string :tags
       t.references :opportunitable, polymorphic: true, index: { name: 'index_opportunities_on_opportunitable_type_and_id' }
 
