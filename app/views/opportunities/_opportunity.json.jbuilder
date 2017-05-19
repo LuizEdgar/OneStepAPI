@@ -21,11 +21,15 @@ json.causes do
   json.partial! 'causes/cause', collection: opportunity.causes, as: :cause
 end
 json.cause_ids opportunity.causes.ids
-json.locations do
-  json.partial! 'locations/location', collection: opportunity.locations, as: :location
+unless opportunity.location.nil?
+  json.location do
+    json.partial! 'locations/location', location: opportunity.location
+  end  
 end
-json.contacts do
-  json.partial! 'contacts/contact', collection: opportunity.contacts, as: :contact
+unless opportunity.contact.nil?
+  json.contact do
+    json.partial! 'contacts/contact', contact: opportunity.contact
+  end
 end
 json.url opportunity_url(opportunity, format: :json)
 json.created_at opportunity.created_at

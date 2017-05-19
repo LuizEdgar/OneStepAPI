@@ -64,8 +64,8 @@ class OpportunitiesController < ApplicationController
                     :tags, 
                     {skill_ids: []},
                     {cause_ids: []}, 
-                    contacts_attributes: [ :id, :name, :phone, :email, :_destroy], 
-                    locations_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
+                    contact_attributes: [ :id, :name, :phone, :email, :_destroy], 
+                    location_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
                     )
     end
 
