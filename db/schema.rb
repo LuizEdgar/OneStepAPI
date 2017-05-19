@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170508204706) do
   end
 
   create_table "locations", force: :cascade do |t|
+    t.string   "name"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170508204706) do
     t.string   "postcode"
     t.decimal  "latitude",         precision: 15, scale: 10
     t.decimal  "longitude",        precision: 15, scale: 10
+    t.string   "google_places_id"
     t.string   "localizable_type"
     t.integer  "localizable_id"
     t.datetime "created_at",                                 null: false

@@ -6,5 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Cause.create(name: "Cause 1")
-Skill.create(name: "Skill 1")
+for i in 1..100 do
+  Cause.create(name: "Cause #{i}")
+  Skill.create(name: "Skill #{i}")  
+end

@@ -30,16 +30,6 @@ class MeController < ApplicationController
 
   end
 
-  def add_education
-    @education = @auth_user.volunteer.educations.new(education_params)
-
-    if @education.save
-      render json: @education, status: :created
-    else
-      render json: @feed_item.errors, status: :unprocessable_entity
-    end
-  end
-
   def contacts
     @contacts = @auth_user.contacts
   end

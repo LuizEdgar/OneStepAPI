@@ -90,7 +90,7 @@ class UsersController < ApplicationController
                           {skill_ids: []}, 
                           {cause_ids: []}, 
                           contacts_attributes: [ :name, :phone, :email], 
-                          locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ]
+                          locations_attributes: [ :name, :address_1, :address_2, :city, :state, :country, :postcode, :google_places_id]
                         ]
                       )
       when "organization"
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
                           {skill_ids: []}, 
                           {cause_ids: []}, 
                           contacts_attributes: [ :name, :phone, :email], 
-                          locations_attributes: [ :address_1, :address_2, :city, :state, :country, :postcode ]
+                          locations_attributes: [ :name, :address_1, :address_2, :city, :state, :country, :postcode, :google_places_id]
                         ]
                       )
       end
@@ -136,7 +136,7 @@ class UsersController < ApplicationController
                           {skill_ids: []}, 
                           {cause_ids: []}, 
                           contacts_attributes: [ :id, :name, :phone, :email, :_destroy],
-                          locations_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
+                          locations_attributes: [ :id, :name, :address_1, :address_2, :city, :state, :country, :postcode, :google_places_id, :_destroy]
                         ]
                       )
       when "organization"
@@ -155,7 +155,7 @@ class UsersController < ApplicationController
                           {skill_ids: []}, 
                           {cause_ids: []}, 
                           contacts_attributes: [ :id, :name, :phone, :email, :_destroy], 
-                          locations_attributes: [ :id, :address_1, :address_2, :city, :state, :country, :postcode, :_destroy]
+                          locations_attributes: [ :id, :name, :address_1, :address_2, :city, :state, :country, :postcode, :google_places_id, :_destroy]
                         ]
                       )
       end
