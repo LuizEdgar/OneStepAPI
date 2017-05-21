@@ -3,10 +3,12 @@ json.title opportunity.title
 json.is_ongoing opportunity.is_ongoing
 json.is_virtual opportunity.is_virtual
 json.volunteers_number opportunity.volunteers_number
-json.start_date_at opportunity.start_date_at
-json.end_date_at opportunity.end_date_at
-json.start_time_at opportunity.start_time_at
-json.end_time_at opportunity.end_time_at
+json.start_at opportunity.start_at
+json.end_at opportunity.end_at
+json.start_date_set opportunity.start_date_set
+json.end_date_set opportunity.end_date_set
+json.start_time_set opportunity.start_time_set
+json.end_time_set opportunity.end_time_set
 json.description opportunity.description
 json.time_commitment opportunity.time_commitment
 json.others_requirements opportunity.others_requirements
