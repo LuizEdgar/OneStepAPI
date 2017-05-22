@@ -4,7 +4,7 @@ class SkillsController < ApplicationController
   # GET /skills
   # GET /skills.json
   def index
-    @skills = Skill.all.page params[:page]
+    @skills = Skill.all.order(:id).page params[:page]
   end
 
   # GET /skills/1

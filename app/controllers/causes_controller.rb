@@ -4,7 +4,7 @@ class CausesController < ApplicationController
   # GET /causes
   # GET /causes.json
   def index
-    @causes = Cause.all.page params[:page]
+    @causes = Cause.all.order(:id).page params[:page]
   end
 
   # GET /causes/1
