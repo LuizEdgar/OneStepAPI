@@ -12,6 +12,7 @@ class CreateVolunteers < ActiveRecord::Migration[5.0]
       t.string :rg
       t.boolean :verified, default: false
       t.references :user, foreign_key: true
+      t.references :profile_image, foreign_key: { to_table: :images }
 
       t.timestamps
     end

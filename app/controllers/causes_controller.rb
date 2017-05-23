@@ -1,5 +1,6 @@
 class CausesController < ApplicationController
   before_action :set_cause, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_user
 
   # GET /causes
   # GET /causes.json
@@ -48,6 +49,6 @@ class CausesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cause_params
-      params.fetch(:cause, {})
+      params.permit(:name, :description, :image_64)
     end
 end
