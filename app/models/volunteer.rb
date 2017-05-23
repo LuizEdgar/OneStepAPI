@@ -42,15 +42,13 @@ class Volunteer < ApplicationRecord
   private
 
   def update_profile_image
-    if self.profile_image_64.present?
-      file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
-      if self.profile_image.nil?
-        self.profile_image = Image.new(base_64_file: file, imageable: self)
-      else
-        self.profile_image.update_attributes(base_64_file: file)
-      end
-      self.profile_image_64 = nil
+    file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
+    if self.profile_image.nil?
+      self.profile_image = Image.new(base_64_file: file, imageable: self)
+    else
+      self.profile_image.update_attributes(base_64_file: file)
     end
+    self.profile_image_64 = nil
   end
 
 end

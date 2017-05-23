@@ -21,15 +21,13 @@ class Skill < ApplicationRecord
   private
 
   def update_image
-    if self.image_64.present?
-      file = { base64: image_64, filename: SecureRandom.urlsafe_base64}
-      if self.image.nil?
-        self.image = Image.new(base_64_file: file, imageable: self)
-      else
-        self.image.update_attributes(base_64_file: file)
-      end
-      self.image_64 = nil
+    file = { base64: image_64, filename: SecureRandom.urlsafe_base64}
+    if self.image.nil?
+      self.image = Image.new(base_64_file: file, imageable: self)
+    else
+      self.image.update_attributes(base_64_file: file)
     end
+    self.image_64 = nil
   end
 
 end

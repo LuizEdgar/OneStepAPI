@@ -17,8 +17,9 @@
 #
 
 class Organization < ApplicationRecord
-  attr_accessor :profile_image_64
+  attr_accessor :profile_image_64, :images_attributes_64
   before_save :update_profile_image, if: "profile_image_64.present?"
+  before_save :add_images, if: "images_attributes_64.present?"
 
   belongs_to :user, required: false
   
@@ -35,18 +36,25 @@ class Organization < ApplicationRecord
 
   belongs_to :profile_image, class_name: "Image", optional: true, dependent: :destroy
   has_many :images, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   private
 
   def update_profile_image
-    if self.profile_image_64.present?
-      file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
-      if self.profile_image.nil?
-        self.profile_image = Image.new(base_64_file: file, imageable: self)
-      else
-        self.profile_image.update_attributes(base_64_file: file)
-      end
-      self.profile_image_64 = nil
+    file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
+    if self.profile_image.nil?
+      self.profile_image = Image.new(base_64_file: file, imageable: self)
+    else
+      self.profile_image.update_attributes(base_64_file: file)
+    end
+    self.profile_image_64 = nil
+  end
+
+  def add_images
+    self.images_attributes_64.each do |image_64|
+      file = { base64: image_64, filename: SecureRandom.urlsafe_base64}
+      image = Image.new(base_64_file: file, imageable: self)
+      self.images << image
     end
   end
 

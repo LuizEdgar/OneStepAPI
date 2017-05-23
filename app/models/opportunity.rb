@@ -19,23 +19,34 @@
 #  opportunitable_id   :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#
 
 class Opportunity < ApplicationRecord
+  attr_accessor :images_attributes_64
+  before_save :add_images, if: "images_attributes_64.present?"
+
   belongs_to :opportunitable, polymorphic: true
 
   has_one :location, as: :localizable, dependent: :destroy
-  accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :location, allow_destroy: true
 
   has_one :contact, as: :contactable, dependent: :destroy
-  accepts_nested_attributes_for :contact
+  accepts_nested_attributes_for :contact, allow_destroy: true
 
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :causes
 
   has_many :images, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
 
-  
+  private
+
+  def add_images
+    self.images_attributes_64.each do |image_64|
+      file = { base64: image_64, filename: SecureRandom.urlsafe_base64}
+      image = Image.new(base_64_file: file, imageable: self)
+      self.images << image
+    end
+  end
   
 end
 

@@ -107,7 +107,8 @@ class UsersController < ApplicationController
                           :mission, 
                           :size, 
                           :established_at,
-                          :profile_image_64, 
+                          :profile_image_64,
+                          {images_attributes_64: []},
                           {skill_ids: []}, 
                           {cause_ids: []}, 
                           contacts_attributes: [ :name, :phone, :email], 
@@ -155,10 +156,12 @@ class UsersController < ApplicationController
                           :mission, 
                           :size, 
                           :established_at,
-                          :profile_image_64, 
+                          :profile_image_64,
+                          {images_attributes_64: []}, 
                           {skill_ids: []}, 
                           {cause_ids: []}, 
                           contacts_attributes: [ :id, :name, :phone, :email, :_destroy], 
+                          images_attributes: [ :id, :_destroy], 
                           locations_attributes: [ :id, :name, :address_1, :address_2, :city, :state, :country, :postcode, :google_places_id, :_destroy]
                         ]
                       )
