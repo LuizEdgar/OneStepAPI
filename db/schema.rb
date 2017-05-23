@@ -16,10 +16,12 @@ ActiveRecord::Schema.define(version: 20170508204706) do
   enable_extension "plpgsql"
 
   create_table "causes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.string   "description"
+    t.integer  "image_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["image_id"], name: "index_causes_on_image_id", using: :btree
   end
 
   create_table "causes_opportunities", id: false, force: :cascade do |t|
@@ -46,6 +48,18 @@ ActiveRecord::Schema.define(version: 20170508204706) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable_type_and_contactable_id", using: :btree
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -94,17 +108,19 @@ ActiveRecord::Schema.define(version: 20170508204706) do
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string   "name",                           null: false
+    t.string   "name",                             null: false
     t.string   "cnpj"
     t.string   "site"
     t.text     "about"
     t.text     "mission"
     t.integer  "size"
-    t.boolean  "verified",       default: false
+    t.boolean  "verified",         default: false
     t.date     "established_at"
     t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "profile_image_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["profile_image_id"], name: "index_organizations_on_profile_image_id", using: :btree
     t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
   end
 
@@ -116,8 +132,10 @@ ActiveRecord::Schema.define(version: 20170508204706) do
   create_table "skills", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description"
+    t.integer  "image_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["image_id"], name: "index_skills_on_image_id", using: :btree
   end
 
   create_table "skills_volunteers", id: false, force: :cascade do |t|
@@ -148,11 +166,17 @@ ActiveRecord::Schema.define(version: 20170508204706) do
     t.string   "rg"
     t.boolean  "verified",            default: false
     t.integer  "user_id"
+    t.integer  "profile_image_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["profile_image_id"], name: "index_volunteers_on_profile_image_id", using: :btree
     t.index ["user_id"], name: "index_volunteers_on_user_id", using: :btree
   end
 
+  add_foreign_key "causes", "images"
+  add_foreign_key "organizations", "images", column: "profile_image_id"
   add_foreign_key "organizations", "users"
+  add_foreign_key "skills", "images"
+  add_foreign_key "volunteers", "images", column: "profile_image_id"
   add_foreign_key "volunteers", "users"
 end

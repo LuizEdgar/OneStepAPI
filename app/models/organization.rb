@@ -17,6 +17,9 @@
 #
 
 class Organization < ApplicationRecord
+  attr_accessor :profile_image_64
+  before_save :update_profile_image, if: "profile_image_64.present?"
+
   belongs_to :user, required: false
   
   has_many :locations, as: :localizable, dependent: :destroy
@@ -29,4 +32,22 @@ class Organization < ApplicationRecord
 
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :causes
+
+  belongs_to :profile_image, class_name: "Image", optional: true, dependent: :destroy
+  has_many :images, as: :imageable, dependent: :destroy
+
+  private
+
+  def update_profile_image
+    if self.profile_image_64.present?
+      file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
+      if self.profile_image.nil?
+        self.profile_image = Image.new(base_64_file: file, imageable: self)
+      else
+        self.profile_image.update_attributes(base_64_file: file)
+      end
+      self.profile_image_64 = nil
+    end
+  end
+
 end

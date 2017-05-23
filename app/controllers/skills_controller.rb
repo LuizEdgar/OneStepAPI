@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_user
 
   # GET /skills
   # GET /skills.json
@@ -48,6 +49,6 @@ class SkillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
-      params.fetch(:skill, {})
+      params.permit(:name, :description, :image_64)
     end
 end

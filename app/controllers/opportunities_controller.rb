@@ -15,9 +15,8 @@ class OpportunitiesController < ApplicationController
   # POST /opportunities
   # POST /opportunities.json
   def create
-    
     @opportunity = @auth_user.opportunities.new(opportunity_params)
-    
+      
     if @opportunity.save
       render :show, status: :created, location: @opportunity
     else

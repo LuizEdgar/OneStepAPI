@@ -32,6 +32,11 @@ class Opportunity < ApplicationRecord
 
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :causes
+
+  has_many :images, as: :imageable, dependent: :destroy
+
+  
+  
 end
 
 #  Opportunity Load (0.6ms)  SELECT "opportunities".* FROM "opportunities"
