@@ -7,6 +7,7 @@ json.about organization.about
 json.mission organization.mission
 json.size organization.size
 json.established_at organization.established_at
+json.feedable_type organization.feed_item.feedable_type
 json.user_id organization.user_id
 json.skills do
   json.partial! 'skills/skill', collection: organization.skills, as: :skill

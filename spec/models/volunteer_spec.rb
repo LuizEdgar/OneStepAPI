@@ -14,6 +14,7 @@
 #  rg                  :string
 #  verified            :boolean          default(FALSE)
 #  user_id             :integer
+#  profile_image_id    :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #

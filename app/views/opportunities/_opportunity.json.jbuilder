@@ -15,6 +15,7 @@ json.others_requirements opportunity.others_requirements
 json.tags opportunity.tags
 json.opportunitable_type opportunity.opportunitable_type
 json.opportunitable_id opportunity.opportunitable_id
+json.feedable_type opportunity.feed_item.feedable_type
 json.skills do
   json.partial! 'skills/skill', collection: opportunity.skills, as: :skill
 end

@@ -4,25 +4,30 @@
 #
 #  id                  :integer          not null, primary key
 #  title               :string
-#  is_ongoing          :boolean
-#  is_virtual          :boolean
 #  volunteers_number   :integer
-#  start_date_at       :date
-#  end_date_at         :date
-#  start_time_at       :time
-#  end_time_at         :time
+#  is_virtual          :boolean
+#  is_ongoing          :boolean
+#  start_at            :datetime
+#  end_at              :datetime
+#  start_date_set      :boolean
+#  end_date_set        :boolean
+#  start_time_set      :boolean
+#  end_time_set        :boolean
 #  description         :text
 #  time_commitment     :string
-#  others_requirements  :string
+#  others_requirements :string
 #  tags                :string
 #  opportunitable_type :string
 #  opportunitable_id   :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#
 
 class Opportunity < ApplicationRecord
   attr_accessor :images_attributes_64
   before_save :add_images, if: "images_attributes_64.present?"
+  after_create :create_feed_item
+  after_update :update_feed_item
 
   belongs_to :opportunitable, polymorphic: true
 
@@ -38,6 +43,8 @@ class Opportunity < ApplicationRecord
   has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
+  has_one :feed_item, as: :feedable, dependent: :destroy
+
   private
 
   def add_images
@@ -45,6 +52,19 @@ class Opportunity < ApplicationRecord
       file = { base64: image_64, filename: SecureRandom.urlsafe_base64}
       image = Image.new(base_64_file: file, imageable: self)
       self.images << image
+    end
+  end
+
+  def create_feed_item
+    FeedItem.create(feedable: self)
+  end
+
+  def update_feed_item
+    if self.updated_at_changed?
+      if self.feed_item.nil?
+        self.create_feed_item
+      end
+      self.feed_item.touch
     end
   end
   

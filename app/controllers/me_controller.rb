@@ -30,6 +30,10 @@ class MeController < ApplicationController
 
   end
 
+  def feed
+    @feed_items = FeedItem.all.order(:updated_at).reverse
+  end
+
   def contacts
     @contacts = @auth_user.contacts
   end

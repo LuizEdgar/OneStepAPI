@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   resources :opportunities
   resource :me, controller: 'me', only: [:show] do
-    get :contacts, :locations, :causes, :skills
+    get :contacts, :locations, :causes, :skills, :feed
     post :sign_in, :facebook_sign_in, :add_education
   end
 
