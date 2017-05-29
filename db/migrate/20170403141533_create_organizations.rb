@@ -10,7 +10,7 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
       t.boolean :verified, default: false
       t.date :established_at
       t.references :user, foreign_key: true
-      t.references :profile_image, foreign_key: { to_table: :images }
+      t.references :profile_image, foreign_key: { to_table: :images, on_delete: :cascade } 
 
       t.timestamps
     end

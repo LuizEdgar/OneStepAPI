@@ -9,6 +9,13 @@ json.cpf volunteer.cpf
 json.rg volunteer.rg
 json.verified volunteer.verified
 json.user_id volunteer.user_id
+json.profile_image do
+  if volunteer.profile_image.present?
+      json.partial! '/images/image', image: volunteer.profile_image
+    else
+      json.null!
+  end
+end
 json.skills do
   json.partial! 'skills/skill', collection: volunteer.skills, as: :skill
 end

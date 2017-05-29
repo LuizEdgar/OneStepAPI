@@ -68,7 +68,7 @@ class OpportunitiesController < ApplicationController
                     {cause_ids: []}, 
                     contact_attributes: [ :id, :name, :phone, :email, :_destroy], 
                     images_attributes: [ :id, :_destroy], 
-                    location_attributes: [ :id, :name, :address_1, :address_2, :city, :state, :country, :postcode, :google_places_id, :_destroy]
+                    location_attributes: [ :id, :name, :address_1, :address_2, :city, :state, :country, :postcode, :latitude, :longitude, :google_places_id, :_destroy]
                     )
     end
 

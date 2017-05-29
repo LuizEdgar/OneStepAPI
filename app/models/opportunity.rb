@@ -55,10 +55,6 @@ class Opportunity < ApplicationRecord
     end
   end
 
-  def create_feed_item
-    FeedItem.create(feedable: self)
-  end
-
   def update_feed_item
     if self.updated_at_changed?
       if self.feed_item.nil?
@@ -66,6 +62,10 @@ class Opportunity < ApplicationRecord
       end
       self.feed_item.touch
     end
+  end
+
+  def create_feed_item
+    FeedItem.create(feedable: self)
   end
   
 end

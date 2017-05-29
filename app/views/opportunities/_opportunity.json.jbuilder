@@ -14,8 +14,21 @@ json.time_commitment opportunity.time_commitment
 json.others_requirements opportunity.others_requirements
 json.tags opportunity.tags
 json.opportunitable_type opportunity.opportunitable_type
-json.opportunitable_id opportunity.opportunitable_id
+json.opportunitable do
+    json.id opportunity.opportunitable.id
+    json.name opportunity.opportunitable.name
+    json.profile_image do
+      if opportunity.opportunitable.profile_image.present?
+        json.partial! '/images/image', image: opportunity.opportunitable.profile_image
+      else
+        json.null!
+      end
+    end
+end
 json.feedable_type opportunity.feed_item.feedable_type
+json.images do
+  json.partial! 'images/image', collection: opportunity.images.order(:created_at), as: :image
+end
 json.skills do
   json.partial! 'skills/skill', collection: opportunity.skills, as: :skill
 end

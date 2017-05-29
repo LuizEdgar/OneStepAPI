@@ -31,7 +31,7 @@ class MeController < ApplicationController
   end
 
   def feed
-    @feed_items = FeedItem.all.order(:updated_at).reverse
+    @feed_items = FeedItem.order(updated_at: :desc).page params[:page]
   end
 
   def contacts
