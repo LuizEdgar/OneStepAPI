@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     post :sign_in, :facebook_sign_in, :add_education
   end
 
-  resources :volunteers, only: [:index]
-  resources :organizations, except: [:create, :destroy]
+  resources :volunteers, only: [:show, :index]
+  resources :organizations, only: [:show, :index]
   resources :users
   resources :causes
   resources :skills

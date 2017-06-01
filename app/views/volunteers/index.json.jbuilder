@@ -1,4 +1,4 @@
-json.array!(@users) do |user|
-  json.partial! '/users/user', user: user
-  json.url user_url(user, format: :json)
+json.array!(@volunteers) do |volunteer|
+  json.partial! '/volunteers/volunteer', volunteer: volunteer
+  json.url volunteer_url(volunteer, format: :json)
 end
