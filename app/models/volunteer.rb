@@ -21,7 +21,7 @@
 
 class Volunteer < ApplicationRecord
   attr_accessor :profile_image_64
-  before_save :update_profile_image, if: "profile_image_64.present?"
+  before_validation :update_profile_image, if: "profile_image_64.present?"
 
   belongs_to :user, required: false
 

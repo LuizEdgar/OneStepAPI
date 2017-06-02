@@ -182,9 +182,7 @@ ActiveRecord::Schema.define(version: 20170526104230) do
   end
 
   add_foreign_key "causes", "images"
-  add_foreign_key "organizations", "images", column: "profile_image_id", on_delete: :cascade
   add_foreign_key "organizations", "users"
   add_foreign_key "skills", "images"
-  add_foreign_key "volunteers", "images", column: "profile_image_id", on_delete: :cascade
   add_foreign_key "volunteers", "users"
 end
