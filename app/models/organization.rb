@@ -38,7 +38,7 @@ class Organization < ApplicationRecord
   has_and_belongs_to_many :causes
 
   belongs_to :profile_image, class_name: "Image", optional: true, dependent: :destroy
-  has_many :images, as: :imageable, dependent: :destroy
+  has_many :images, -> { where solo: false }, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   has_one :feed_item, as: :feedable, dependent: :destroy
@@ -46,9 +46,9 @@ class Organization < ApplicationRecord
   private
 
   def update_profile_image
-    file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
+    file = { base64: profile_image_64, filename: "profile"}
     if self.profile_image.nil?
-      self.profile_image = Image.new(base_64_file: file, imageable: self)
+      self.profile_image = Image.new(base_64_file: file, imageable: self, solo: true)
     else
       self.profile_image.update_attributes(base_64_file: file)
     end

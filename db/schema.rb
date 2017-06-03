@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(version: 20170526104230) do
   end
 
   create_table "images", force: :cascade do |t|
+    t.boolean  "solo",              default: false
     t.string   "imageable_type"
     t.integer  "imageable_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"

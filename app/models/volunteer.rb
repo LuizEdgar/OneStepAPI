@@ -43,9 +43,9 @@ class Volunteer < ApplicationRecord
   private
 
   def update_profile_image
-    file = { base64: profile_image_64, filename: SecureRandom.urlsafe_base64}
+    file = { base64: profile_image_64, filename: "profile"}
     if self.profile_image.nil?
-      self.profile_image = Image.new(base_64_file: file, imageable: self)
+      self.profile_image = Image.new(base_64_file: file, imageable: self, solo: true)
     else
       self.profile_image.update_attributes(base_64_file: file)
     end
