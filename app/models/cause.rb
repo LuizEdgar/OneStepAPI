@@ -12,7 +12,7 @@
 
 class Cause < ApplicationRecord
   attr_accessor :image_64
-  before_save :update_image, if: "image_64.present?"
+  before_validation :update_image, if: "image_64.present?"
 
   has_and_belongs_to_many :organizations
   has_and_belongs_to_many :volunteers

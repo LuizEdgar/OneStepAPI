@@ -20,7 +20,7 @@
 class Organization < ApplicationRecord
   attr_accessor :profile_image_64, :images_attributes_64
   before_validation :update_profile_image, if: "profile_image_64.present?"
-  before_save :add_images, if: "images_attributes_64.present?"
+  before_validation :add_images, if: "images_attributes_64.present?"
   after_create :create_feed_item
   after_update :update_feed_item
 

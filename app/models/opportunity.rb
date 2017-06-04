@@ -25,7 +25,7 @@
 
 class Opportunity < ApplicationRecord
   attr_accessor :images_attributes_64
-  before_save :add_images, if: "images_attributes_64.present?"
+  before_validation :add_images, if: "images_attributes_64.present?"
   after_create :create_feed_item
   after_update :update_feed_item
 
