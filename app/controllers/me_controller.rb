@@ -34,6 +34,11 @@ class MeController < ApplicationController
     @feed_items = FeedItem.order(updated_at: :desc).page params[:page]
   end
 
+  def opportunities
+    @feed_items = FeedItem.where(feedable_type: "Opportunity").order(updated_at: :desc).page params[:page]
+    render :feed
+  end
+
   def contacts
     @contacts = @auth_user.contacts
   end
