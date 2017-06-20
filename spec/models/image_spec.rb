@@ -3,6 +3,7 @@
 # Table name: images
 #
 #  id                :integer          not null, primary key
+#  solo              :boolean          default(FALSE)
 #  imageable_type    :string
 #  imageable_id      :integer
 #  created_at        :datetime         not null
